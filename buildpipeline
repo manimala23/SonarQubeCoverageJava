@@ -6,11 +6,11 @@ node(){
         sh """ls -lart
         date
         mvn clean install
-        if ( "$Bool" = "true" ); then
+      /*  if ( "$Bool" = "true" ); then
             echo "prooceding with deploy:  $Deployment"
             else
             echo "cancelling deployment: $Deployment"
-            fi
+            fi*/
             """
         
     }
