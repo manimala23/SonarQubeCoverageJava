@@ -1,0 +1,24 @@
+node(){
+    stage('code checkout'){
+        git changelog: false, credentialsId: 'github', poll: false, url: 'https://github.com/manimala23/SonarQubeCoverageJava'
+    }
+    stage('maven build'){
+        sh """ls -lart
+        date
+        mvn clean install
+        if ( "$Bool" = "true" ); then
+            echo "prooceding with deploy:  $Deployment"
+            else
+            echo "cancelling deployment: $Deployment"
+            fi
+            """
+        
+    }
+    stage('code review'){
+        
+    }
+    stage('code deployment'){
+        deploy adapters: [tomcat9(credentialsId: 'tomcatcred', path: '', url: 'http://18.209.30.97:8080')], contextPath: 'counterapp', onFailure: false, war: '**/*.war'
+        
+    }
+}
