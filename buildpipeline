@@ -1,6 +1,6 @@
 node(){
     stage('code checkout'){
-        git changelog: false, credentialsId: 'github', poll: false, url: 'https://github.com/manimala23/SonarQubeCoverageJava.git'
+        git changelog: false, credentialsId: 'github', poll: false, url: 'https://github.com/manimala23/SonarQubeCoverageJava'
     }
     stage('maven build'){
         sh """ls -lart
